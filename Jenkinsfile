@@ -49,26 +49,21 @@ pipeline {
         }
         
         stage('Git Tag') {
-            steps {
-                withCredentials([usernamePassword(
-                    credentialsId: 'github-creds',
-                    usernameVariable: 'GIT_USER',
-                    passwordVariable: 'GIT_TOKEN'
-                )]) {
-                    sh """
-                        # Git config
-                        git config user.email "jenkins@example.com"
-                        git config user.name "Jenkins"
-                        
-                        # Tag banao
-                        git tag -a ${VERSION} -m "Release ${VERSION}"
-                        
-                        # Tag push karo GitHub pe
-                        git push https://${GIT_USER}:${GIT_TOKEN}@github.com/<username>/jenkins-versioning.git ${VERSION}
-                    """
-                }
-            }
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'github-creds',
+            usernameVariable: 'GIT_USER',
+            passwordVariable: 'GIT_TOKEN'
+        )]) {
+            sh """
+                git config user.email "jenkins@example.com"
+                git config user.name "Jenkins"
+                git tag ${VERSION}
+                git push https://${GIT_USER}:${GIT_TOKEN}@github.com/satyamsingh24/jenkins-versioning.git ${VERSION}
+            """
         }
+    }
+}
         
         stage('Verify') {
             steps {
