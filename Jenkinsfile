@@ -2,7 +2,7 @@ pipeline {
     agent { label 'agent-1' }
     
     environment {
-        REPO_URL    = 'https://github.com/<username>/jenkins-versioning.git'
+        REPO_URL    = 'https://github.com/satyamsingh24/jenkins-versioning.git'
         IMAGE_NAME  = '176583374037.dkr.ecr.ap-south-1.amazonaws.com/myapp-repo'
         AWS_REGION  = 'ap-south-1'
     }
