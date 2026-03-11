@@ -6,6 +6,10 @@ pipeline {
         IMAGE_NAME  = '176583374037.dkr.ecr.ap-south-1.amazonaws.com/myapp-repo'
         AWS_REGION  = 'ap-south-1'
     }
+   
+   triggers {
+        pollSCM('H/2 * * * *')  // har 2 min check karo
+    }
     
     stages {
         stage('Checkout') {
